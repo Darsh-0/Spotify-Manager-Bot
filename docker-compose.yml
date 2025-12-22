@@ -1,0 +1,9 @@
+services:
+  spotify-bot:
+    build: .
+    env_file: .env
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./my_data.cache:/app/my_data.cache
+    restart: unless-stopped

@@ -1,0 +1,19 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment / secrets
+.env
+my_data.cache
+.cache/
+*.cache
+
+# Docker
+*.log
+
+# OS junk
+.DS_Store
+Thumbs.db
