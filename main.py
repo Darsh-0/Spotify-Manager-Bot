@@ -120,15 +120,10 @@ def secondly(sp: spotipy.Spotify):
 def run_function_every_31_seconds(sp: spotipy.Spotify):
     secondly(sp)
     print("hell")
-    last_execution_time = datetime.now()
-    saved_date = get_current_date_nz()
 
     while True:
-        current_time = datetime.now()
-        if (current_time - last_execution_time).total_seconds() >= 31:
-            secondly(sp)
-            last_execution_time = current_time
-
+        time.sleep(31)
+        secondly(sp)
 
 def build_spotify_client() -> spotipy.Spotify:
     client_id = os.environ.get("CLIENT_ID")
@@ -152,13 +147,13 @@ def build_spotify_client() -> spotipy.Spotify:
         redirect_uri="http://127.0.0.1:8000/callback",
         scope=scopes,
         cache_path="my_data.cache",
-        open_browser=False
+        open_browser=True
     ),
     requests_timeout=10,
     )
 
 
 if __name__ == "__main__":
-    keep_alive()
+    #keep_alive()
     sp = build_spotify_client()
     run_function_every_31_seconds(sp)

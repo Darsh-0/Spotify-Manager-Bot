@@ -10,6 +10,9 @@ ENV PYTHONUNBUFFERED=1
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Create empty cache file so Docker file mount works
+RUN touch my_data.cache
+
 # Copy your code
 COPY . .
 
@@ -17,3 +20,4 @@ COPY . .
 EXPOSE 8080
 
 CMD ["python", "main.py"]
+
