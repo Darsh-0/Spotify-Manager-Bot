@@ -108,11 +108,11 @@ def secondly(sp: spotipy.Spotify):
     playlist_info = call_with_retry(sp.playlist, HISTORY_PLAYLIST_ID)
     num_tracks = playlist_info["tracks"]["total"]
 
-    title = f"every song i've ever listened to ({num_tracks} songs so far)"
+    title = f"every song i've listened to ({num_tracks} songs so far)"
 
     now_nz = datetime.now(NZ_TZ)
     formatted = now_nz.strftime("of %B, %Y at %I:%M:%S %p")
-    description = f"Automatically updated on {get_ordinal(now_nz.day)} {formatted}"
+    description = f"i last updated this at {get_ordinal(now_nz.day)} {formatted}"
 
     call_with_retry(sp.playlist_change_details, HISTORY_PLAYLIST_ID, name=title, description=description)
 
@@ -147,7 +147,7 @@ def build_spotify_client() -> spotipy.Spotify:
         redirect_uri="http://127.0.0.1:8000/callback",
         scope=scopes,
         cache_path="my_data.cache",
-        open_browser=True
+        open_browser=False
     ),
     requests_timeout=10,
     )
