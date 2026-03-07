@@ -111,7 +111,7 @@ def secondly(sp: spotipy.Spotify):
     title = f"every song i've listened to ({num_tracks} songs so far)"
 
     now_nz = datetime.now(NZ_TZ)
-    formatted = now_nz.strftime("of %B, %Y at %I:%M:%S %p")
+    formatted = now_nz.strftime("of %B, %Y at %I:%M %p")
     description = f"i last updated this at {get_ordinal(now_nz.day)} {formatted}"
 
     call_with_retry(sp.playlist_change_details, HISTORY_PLAYLIST_ID, name=title, description=description)
